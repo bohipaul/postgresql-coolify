@@ -27,8 +27,11 @@ services:
     restart: unless-stopped
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@example.com}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin}
-      PGADMIN_LISTEN_PORT: 80
+      PGLADMIN_DEFAULT_PASSWORD: ${PGLADMIN_PASSWORD:-admin}
+      PGLADMIN_LISTEN_PORT: 80
+      PGLADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION: "False"
+      PGLADMIN_CONFIG_WTF_CSRF_CHECK_DEFAULT: "False"
+      SCRIPT_NAME: "/"
     volumes:
       - pgadmin_data:/var/lib/pgadmin
     expose:

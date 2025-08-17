@@ -15,6 +15,7 @@ services:
     #   - "${POSTGRES_PORT:-5432}:5432"
     networks:
       - postgres-network
+      - default
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-coolify_db}"]
       interval: 30s
@@ -38,6 +39,7 @@ services:
       - "80"
     networks:
       - postgres-network
+      - default
     depends_on:
       postgres:
         condition: service_healthy
@@ -51,3 +53,6 @@ volumes:
 networks:
   postgres-network:
     driver: bridge
+  default:
+    external: true
+    name: coolify
